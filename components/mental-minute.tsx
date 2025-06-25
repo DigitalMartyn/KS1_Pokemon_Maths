@@ -12,48 +12,48 @@ type HighScoreEntry = {
 // Update the Pokemon data structure to include HP
 const pokemonEvolutions = [
   {
-    name: "Eevee",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZxhEc0cQx6kICrbvHrFradICZOoD2sC2ivg&s",
+    name: "EEVEE",
+    image: "/images/eevee.png",
     maxHp: 2,
   },
   {
-    name: "Vaporeon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgIMGrXxBAjlvtgpuK8ZBK6aVqhfcHToredw&s",
+    name: "VAPOREON",
+    image: "/images/vaporeon.png",
     maxHp: 3,
   },
   {
-    name: "Jolteon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSO5FM2dBGQvygiJqRQ7YoXFqQSFHdz9K2cg&s",
+    name: "JOLTEON",
+    image: "/images/jolteon.png",
     maxHp: 5,
   },
   {
-    name: "Flareon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMZ_E-rvAd58NNIgBTDljxTpYvC7nrnBQt8g&s",
+    name: "FLAREON",
+    image: "/images/flareon.png",
     maxHp: 5,
   },
   {
-    name: "Espeon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvsoPtCnddl-6kEzFoWb7cUcciHSDa4794kw&s",
+    name: "ESPEON",
+    image: "/images/espeon.png",
     maxHp: 5,
   },
   {
-    name: "Umbreon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPqauxfWCnyvLXPHmTqVBv16YzQOrNHByMiQ&s",
+    name: "UMBREON",
+    image: "/images/umbreon.png",
     maxHp: 5,
   },
   {
-    name: "Leafeon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn1cLUcGOQ9_0cCdS8lQHTjUVUq0PqRXGXQw&s",
+    name: "LEAFEON",
+    image: "/images/leafeon.png",
     maxHp: 5,
   },
   {
-    name: "Glaceon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJACHREbdJc1ejJcFl_vIujPHAV-HWuLiFAA&s",
+    name: "GLACEON",
+    image: "/images/glaceon.png",
     maxHp: 5,
   },
   {
-    name: "Sylveon",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQphaOivpdVpr2vJIK4IL_-PQSFygWEC8QA-g&s",
+    name: "SYLVEON",
+    image: "/images/sylveon.png",
     maxHp: 5,
   },
 ]
@@ -294,7 +294,7 @@ export default function MentalMinute() {
   }, [generateProblem])
 
   return (
-    <div className="flex flex-col md:flex-row items-start justify-center gap-4 w-full max-w-5xl">
+    <div className="w-full max-w-4xl mx-auto h-screen flex flex-col bg-gradient-to-b from-blue-200 via-green-200 to-green-300 relative overflow-hidden">
       {/* Audio elements for sounds */}
       <audio ref={correctSoundRef} src="https://www.myinstants.com/media/sounds/answer-correct.mp3" preload="auto" />
       <audio
@@ -303,233 +303,182 @@ export default function MentalMinute() {
         preload="auto"
       />
 
-      {/* Pokemon Display Box */}
-      <div className="w-full md:w-48 mb-4 md:mb-0">
-        <div className="w-full h-full rounded-lg overflow-hidden bg-gradient-to-b from-emerald-400 to-purple-500 p-4">
-          <div className="bg-blue-400 rounded-lg p-4 relative h-full">
-            {/* Background pattern */}
-            <div className="absolute inset-0 grid grid-cols-4 grid-rows-8 opacity-30">
-              {Array.from({ length: 32 }).map((_, i) => (
-                <div key={i} className="flex items-center justify-center text-white text-xl">
-                  {["+", "-", "×", "÷", "?"][Math.floor(Math.random() * 5)]}
-                </div>
-              ))}
+      {/* Background grass pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div
+          className="w-full h-full bg-repeat"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23059669' fillOpacity='0.4'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+      </div>
+
+      {/* Top Section - Pokemon Info and Battle Area */}
+      <div className="flex-1 relative p-4">
+        {/* Enemy Pokemon Name and HP (Top Left) */}
+        <div className="absolute top-4 left-4 z-10">
+          <div className="bg-white border-4 border-gray-800 rounded-lg p-3 shadow-lg font-mono text-sm">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-bold text-gray-800">{currentPokemon.name}</span>
+              <span className="text-blue-600">♂</span>
+              <span className="text-xs bg-yellow-400 px-1 rounded">Lv{20 + pokemonIndex * 5}</span>
             </div>
-
-            <div className="relative z-10 flex flex-col items-center h-full">
-              {/* Pokemon Header */}
-              <div className="text-center mb-2">
-                <h2 className="text-xl font-bold text-white drop-shadow-md">Pokémon</h2>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-orange-600">HP</span>
+              <div className="w-24 h-2 bg-gray-300 border border-gray-600 rounded-sm overflow-hidden">
+                <div
+                  className={`h-full transition-all duration-300 ${
+                    currentHP > currentPokemon.maxHp * 0.5
+                      ? "bg-green-500"
+                      : currentHP > currentPokemon.maxHp * 0.2
+                        ? "bg-yellow-500"
+                        : "bg-red-500"
+                  }`}
+                  style={{ width: `${(currentHP / currentPokemon.maxHp) * 100}%` }}
+                />
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Pokemon Display */}
-              <div className="bg-white rounded-lg p-3 shadow-md flex-1 w-full flex flex-col items-center justify-center">
-                <div className="relative w-full h-full flex flex-col items-center justify-center">
-                  <img
-                    src={currentPokemon.image || "/placeholder.svg"}
-                    alt={currentPokemon.name}
-                    className="w-32 h-32 object-contain transition-all duration-300"
-                  />
-                  <div className="mt-2 text-center">
-                    <span className="text-sm font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
-                      {currentPokemon.name}
-                    </span>
-                  </div>
-                  {/* HP Display in Pokemon Box */}
-                  <div className="mt-2 w-full">
-                    <div className="text-center">
-                      <span className="text-sm font-bold text-red-600">HP: {currentHP}</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
-                      <div
-                        className="bg-red-600 h-2.5 rounded-full transition-all duration-300"
-                        style={{ width: `${(currentHP / currentPokemon.maxHp) * 100}%` }}
-                      ></div>
-                    </div>
+        {/* Enemy Pokemon (Top Right) */}
+        <div className="absolute top-8 right-8 z-10">
+          <div className="relative">
+            <img
+              src={currentPokemon.image || "/placeholder.svg"}
+              alt={currentPokemon.name}
+              className="w-32 h-32 object-contain pixelated"
+              style={{ imageRendering: "pixelated" }}
+            />
+            {/* Grass platform */}
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-green-400 rounded-full opacity-60" />
+          </div>
+        </div>
+
+        {/* Score Box (Middle Right) */}
+        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 z-10">
+          <div className="bg-white border-4 border-gray-800 rounded-lg p-4 shadow-lg font-mono">
+            <div className="flex items-center gap-2 mb-2">
+              <Trophy className="w-4 h-4 text-yellow-500" />
+              <span className="text-sm font-bold text-gray-800">SCORE</span>
+            </div>
+            <div className="text-2xl font-bold text-blue-600 text-center">{score}</div>
+            <div className="flex items-center gap-2 mt-2">
+              <Clock className="w-4 h-4 text-red-500" />
+              <span className="text-sm font-bold text-gray-800">{timeLeft}s</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Player Pokemon (Bottom Left) */}
+        <div className="absolute bottom-20 left-8 z-10">
+          <div className="relative">
+            <img
+              src="/images/eevee.png"
+              alt="Player Eevee"
+              className="w-24 h-24 object-contain pixelated transform scale-x-[-1]"
+              style={{ imageRendering: "pixelated" }}
+            />
+            {/* Grass platform */}
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-green-400 rounded-full opacity-60" />
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Battle Interface */}
+      <div className="h-48 bg-white border-t-4 border-gray-800 relative">
+        {/* Battle text box */}
+        <div className="h-full p-4">
+          <div className="bg-gray-100 border-4 border-gray-800 rounded-lg h-full p-4 font-mono relative">
+            {gameActive ? (
+              <div className="h-full flex flex-col">
+                {/* Math Problem */}
+                <div className="text-center mb-4">
+                  <div className="text-2xl font-bold text-gray-800 mb-2">
+                    What is {problem.num1} {problem.operator} {problem.num2}?
                   </div>
                 </div>
-              </div>
 
-              {/* Score Display */}
-              <div className="mt-4 bg-white rounded-lg p-2 shadow-md w-full">
+                {/* Multiple Choice Options */}
+                <div className="grid grid-cols-3 gap-3 flex-1">
+                  {problem.options.map((option, index) => (
+                    <button
+                      key={`${option}-${index}`}
+                      onClick={() => checkAnswer(option)}
+                      disabled={isProcessingAnswer}
+                      className={`
+                        h-12 rounded-md text-lg font-bold shadow-md border-2 transition-all duration-200
+                        ${
+                          selectedAnswer === option
+                            ? option === problem.answer
+                              ? "bg-green-400 border-green-600 text-white"
+                              : "bg-red-400 border-red-600 text-white"
+                            : "bg-blue-200 border-blue-400 hover:bg-blue-300 active:bg-blue-400 text-gray-800"
+                        }
+                        ${isProcessingAnswer ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
+                      `}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="h-full flex items-center justify-center">
                 <div className="text-center">
-                  <span className="text-sm text-gray-600">Score</span>
-                  <div className="text-2xl font-bold text-blue-600">{score}</div>
+                  {timeLeft === 60 ? (
+                    <>
+                      <div className="text-xl font-bold text-gray-800 mb-4">EVIE'S MATHS CHALLENGE</div>
+                      <div className="text-sm text-gray-600 mb-6">Solve math problems to defeat Pokemon!</div>
+                      <button
+                        onClick={startGame}
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg border-2 border-blue-700"
+                      >
+                        START BATTLE
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-xl font-bold text-gray-800 mb-2">BATTLE OVER!</div>
+                      <div className="text-lg text-gray-600 mb-4">Final Score: {score}</div>
+                      {isNewHighScore && <div className="text-yellow-600 font-bold mb-4">🏆 NEW HIGH SCORE! 🏆</div>}
+                      <button
+                        onClick={startGame}
+                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg border-2 border-green-700"
+                      >
+                        BATTLE AGAIN
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Main Game */}
-      <div className="flex flex-col items-center w-full max-w-md">
-        <div className="w-full h-full rounded-lg overflow-hidden bg-gradient-to-b from-emerald-400 to-purple-500 p-4 relative">
-          {/* Title */}
-          <div className="text-center mb-2">
-            <h1
-              className="text-4xl font-bold text-yellow-400 drop-shadow-md tracking-wider"
-              style={{ fontFamily: "Comic Sans MS, cursive" }}
-            >
-              Evie's Maths Challenge
-            </h1>
-          </div>
-
-          {/* Game board */}
-          <div className="bg-blue-400 rounded-lg p-4 relative">
-            {/* Background pattern */}
-            <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 opacity-30">
-              {Array.from({ length: 64 }).map((_, i) => (
-                <div key={i} className="flex items-center justify-center text-white text-xl">
-                  {["+", "-", "×", "÷", "?"][Math.floor(Math.random() * 5)]}
+      {/* High Scores Panel (Hidden during game, shown on sides) */}
+      {!gameActive && (
+        <div className="absolute top-4 right-4 w-64">
+          <div className="bg-white border-4 border-gray-800 rounded-lg p-4 shadow-lg font-mono">
+            <div className="flex items-center gap-2 mb-3">
+              <Trophy className="w-5 h-5 text-yellow-500" />
+              <span className="font-bold text-gray-800">HIGH SCORES</span>
+            </div>
+            <div className="space-y-1">
+              {highScores.map((entry, index) => (
+                <div key={index} className="flex justify-between text-sm">
+                  <span>
+                    {index + 1}. {entry.score}
+                  </span>
+                  <span className="text-gray-600">{entry.date}</span>
                 </div>
               ))}
-            </div>
-
-            <div className="relative z-10">
-              {/* Timer */}
-              <div className="flex justify-center items-center mb-4">
-                <div className="relative">
-                  <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
-                    <div className="absolute text-xl font-bold text-red-600">{timeLeft}</div>
-                    <Clock className="w-12 h-12 text-gray-700 opacity-30" />
-                    <div
-                      className="absolute"
-                      style={{
-                        top: "50%",
-                        left: "50%",
-                        height: "40%",
-                        width: "2px",
-                        background: "red",
-                        transformOrigin: "bottom",
-                        transform: `translate(-50%, -100%) rotate(${(timeLeft / 60) * 360}deg)`,
-                      }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Problem display */}
-              <div className="bg-white rounded-lg p-4 mb-4 shadow-md">
-                <div className="text-center text-4xl text-blue-600 font-bold">
-                  {problem.num1} {problem.operator} {problem.num2} =
-                </div>
-              </div>
-
-              {/* Multiple choice answers */}
-              <div className="grid grid-cols-3 gap-3 mt-4">
-                {problem.options.map((option, index) => (
-                  <button
-                    key={`${option}-${index}`}
-                    onClick={() => checkAnswer(option)}
-                    disabled={isProcessingAnswer}
-                    className={`
-                      h-14 rounded-md text-2xl font-bold shadow-md
-                      ${
-                        selectedAnswer === option
-                          ? option === problem.answer
-                            ? "bg-green-400"
-                            : "bg-red-400"
-                          : "bg-blue-300 hover:bg-blue-200 active:bg-blue-400"
-                      }
-                      transition-colors duration-200 border-2 border-blue-500
-                      ${isProcessingAnswer ? "cursor-not-allowed" : "cursor-pointer"}
-                    `}
-                  >
-                    {option}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Game over overlay */}
-          {!gameActive && timeLeft === 0 && (
-            <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center z-50">
-              <div className="text-white text-center">
-                <h2 className="text-3xl font-bold mb-2">Time's Up!</h2>
-                <p className="text-xl mb-4">Your score: {score}</p>
-                {isNewHighScore && <div className="mb-4 text-yellow-300 font-bold">🏆 New High Score! 🏆</div>}
-                <button
-                  onClick={startGame}
-                  className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full text-lg"
-                >
-                  Play Again
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Start game overlay */}
-          {!gameActive && timeLeft === 60 && (
-            <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center z-50">
-              <div className="text-white text-center">
-                <h2 className="text-3xl font-bold mb-4">Evie's Maths Challenge</h2>
-                <p className="text-xl mb-6">Solve as many math problems as you can in 60 seconds!</p>
-                <button
-                  onClick={startGame}
-                  className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full text-lg"
-                >
-                  Start Game
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* High Score Table */}
-      <div className="w-full md:w-64 mt-4 md:mt-0">
-        <div className="w-full h-full rounded-lg overflow-hidden bg-gradient-to-b from-emerald-400 to-purple-500 p-4">
-          <div className="bg-blue-400 rounded-lg p-4 relative">
-            {/* Background pattern */}
-            <div className="absolute inset-0 grid grid-cols-4 grid-rows-8 opacity-30">
-              {Array.from({ length: 32 }).map((_, i) => (
-                <div key={i} className="flex items-center justify-center text-white text-xl">
-                  {["+", "-", "×", "÷", "?"][Math.floor(Math.random() * 5)]}
-                </div>
-              ))}
-            </div>
-
-            <div className="relative z-10">
-              {/* High Score Header */}
-              <div className="flex items-center justify-center mb-4">
-                <Trophy className="w-5 h-5 text-yellow-300 mr-2" />
-                <h2 className="text-xl font-bold text-white">High Scores</h2>
-              </div>
-
-              {/* Score List */}
-              <div className="bg-white rounded-lg p-3 shadow-md">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-gray-200">
-                      <th className="text-left pb-2 text-sm font-bold text-blue-600">Score</th>
-                      <th className="text-right pb-2 text-sm font-bold text-blue-600">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {highScores.map((entry, index) => (
-                      <tr key={index} className="border-b border-gray-100 last:border-0">
-                        <td className="py-2 text-lg font-bold">
-                          {index + 1}. {entry.score}
-                        </td>
-                        <td className="py-2 text-sm font-medium text-right">{entry.date}</td>
-                      </tr>
-                    ))}
-                    {highScores.length === 0 && (
-                      <tr>
-                        <td colSpan={2} className="py-4 text-center text-gray-500">
-                          No scores yet
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
+              {highScores.length === 0 && <div className="text-center text-gray-500 text-sm">No scores yet</div>}
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
