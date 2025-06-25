@@ -385,16 +385,16 @@ export default function MentalMinute() {
         </div>
       </div>
 
-      {/* Bottom Battle Interface */}
-      <div className="h-48 bg-white border-t-4 border-gray-800 relative">
+      {/* Bottom Battle Interface - Overlaid on main box */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 z-20">
         {/* Battle text box */}
         <div className="h-full p-4">
-          <div className="bg-gray-100 border-4 border-gray-800 rounded-lg h-full p-4 font-mono relative">
+          <div className="bg-blue-900 border-4 border-yellow-400 rounded-lg h-full p-4 font-mono relative shadow-2xl">
             {gameActive ? (
               <div className="h-full flex flex-col">
                 {/* Math Problem */}
                 <div className="text-center mb-4">
-                  <div className="text-2xl font-bold text-gray-800 mb-2">
+                  <div className="text-2xl font-bold text-white mb-2">
                     What is {problem.num1} {problem.operator} {problem.num2}?
                   </div>
                 </div>
@@ -413,7 +413,7 @@ export default function MentalMinute() {
                             ? option === problem.answer
                               ? "bg-green-400 border-green-600 text-white"
                               : "bg-red-400 border-red-600 text-white"
-                            : "bg-blue-200 border-blue-400 hover:bg-blue-300 active:bg-blue-400 text-gray-800"
+                            : "bg-white border-gray-400 hover:bg-gray-100 active:bg-gray-200 text-gray-800"
                         }
                         ${isProcessingAnswer ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
                       `}
@@ -428,23 +428,23 @@ export default function MentalMinute() {
                 <div className="text-center">
                   {timeLeft === 60 ? (
                     <>
-                      <div className="text-xl font-bold text-gray-800 mb-4">EVIE'S MATHS CHALLENGE</div>
-                      <div className="text-sm text-gray-600 mb-6">Solve math problems to defeat Pokemon!</div>
+                      <div className="text-xl font-bold text-white mb-4">EVIE'S MATHS CHALLENGE</div>
+                      <div className="text-sm text-gray-300 mb-6">Solve math problems to defeat Pokemon!</div>
                       <button
                         onClick={startGame}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg border-2 border-blue-700"
+                        className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-6 rounded-lg text-lg border-2 border-yellow-600"
                       >
                         START BATTLE
                       </button>
                     </>
                   ) : (
                     <>
-                      <div className="text-xl font-bold text-gray-800 mb-2">BATTLE OVER!</div>
-                      <div className="text-lg text-gray-600 mb-4">Final Score: {score}</div>
-                      {isNewHighScore && <div className="text-yellow-600 font-bold mb-4">🏆 NEW HIGH SCORE! 🏆</div>}
+                      <div className="text-xl font-bold text-white mb-2">BATTLE OVER!</div>
+                      <div className="text-lg text-gray-300 mb-4">Final Score: {score}</div>
+                      {isNewHighScore && <div className="text-yellow-400 font-bold mb-4">🏆 NEW HIGH SCORE! 🏆</div>}
                       <button
                         onClick={startGame}
-                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg border-2 border-green-700"
+                        className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-6 rounded-lg text-lg border-2 border-yellow-600"
                       >
                         BATTLE AGAIN
                       </button>
