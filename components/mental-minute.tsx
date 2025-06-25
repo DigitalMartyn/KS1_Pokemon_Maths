@@ -376,11 +376,11 @@ export default function MentalMinute() {
             <img
               src="/images/eevee.png"
               alt="Player Eevee"
-              className="w-20 h-20 object-contain pixelated"
+              className="w-32 h-32 object-contain pixelated"
               style={{ imageRendering: "pixelated" }}
             />
             {/* Grass platform */}
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-28 h-5 bg-green-400 rounded-full opacity-60" />
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-green-400 rounded-full opacity-60" />
           </div>
         </div>
       </div>
